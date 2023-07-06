@@ -16,7 +16,7 @@ describe("Domain events tests", () => {
       1
     );
     expect(
-      eventDispatcher.getEventHandlers["ProductCreatedEvent"][0]
+      eventDispatcher.getEventHandlers.ProductCreatedEvent[0]
     ).toMatchObject(eventHandler);
   });
 

@@ -1,9 +1,9 @@
 export default class OrderItem {
-  private _id: string;
-  private _productId: string;
-  private _name: string;
-  private _price: number;
-  private _quantity: number;
+  private readonly _id: string;
+  private readonly _productId: string;
+  private readonly _name: string;
+  private readonly _price: number;
+  private readonly _quantity: number;
   private _total: number;
 
   constructor(

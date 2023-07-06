@@ -28,8 +28,8 @@ export default class Address {
   get city(): string {
     return this._city;
   }
-  
-  validate() {
+
+  validate = () => {
     if (this._street.length === 0) {
       throw new Error("Street is required");
     }
@@ -42,7 +42,7 @@ export default class Address {
     if (this._city.length === 0) {
       throw new Error("City is required");
     }
-  }
+  };
 
   toString() {
     return `${this._street}, ${this._number}, ${this._zip} ${this._city}`;

@@ -1,8 +1,8 @@
 import OrderItem from "./order_item";
 export default class Order {
-  private _id: string;
-  private _customerId: string;
-  private _items: OrderItem[];
+  private readonly _id: string;
+  private readonly _customerId: string;
+  private readonly _items: OrderItem[];
   private _total: number;
 
   constructor(id: string, customerId: string, items: OrderItem[]) {
@@ -23,6 +23,11 @@ export default class Order {
 
   get items(): OrderItem[] {
     return this._items;
+  }
+
+  changeItems(items: OrderItem[]): void {
+    this._items = items;
+    this.validate();
   }
 
   validate(): boolean {

@@ -1,7 +1,7 @@
 import Address from "../value-object/address";
 
 export default class Customer {
-  private _id: string;
+  private readonly _id: string;
   private _name: string = "";
   private _address!: Address;
   private _active: boolean = false;
@@ -42,7 +42,7 @@ export default class Customer {
   get Address(): Address {
     return this._address;
   }
-  
+
   changeAddress(address: Address) {
     this._address = address;
   }
@@ -64,9 +64,5 @@ export default class Customer {
 
   addRewardPoints(points: number) {
     this._rewardPoints += points;
-  }
-
-  set Address(address: Address) {
-    this._address = address;
   }
 }
