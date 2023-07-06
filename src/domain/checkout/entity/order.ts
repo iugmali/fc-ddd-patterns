@@ -2,7 +2,7 @@ import OrderItem from "./order_item";
 export default class Order {
   private readonly _id: string;
   private readonly _customerId: string;
-  private readonly _items: OrderItem[];
+  private _items: OrderItem[];
   private _total: number;
 
   constructor(id: string, customerId: string, items: OrderItem[]) {
