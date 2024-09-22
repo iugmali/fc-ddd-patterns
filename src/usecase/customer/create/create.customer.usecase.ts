@@ -15,10 +15,10 @@ export default class CreateCustomerUseCase {
       id: customer.id,
       name: customer.name,
       address: {
-        street: customer.Address.street,
-        city: customer.Address.city,
-        number: customer.Address.number,
-        zip: customer.Address.zip
+        street: customer.address.street,
+        city: customer.address.city,
+        number: customer.address.number,
+        zip: customer.address.zip
       }
     };
   }

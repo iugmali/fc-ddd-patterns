@@ -5,10 +5,11 @@ import CustomerFactory from "../../../domain/customer/factory/customer.factory";
 import Address from "../../../domain/customer/value-object/address";
 import FindCustomerUseCase from "./find.customer.usecase";
 import Customer from "../../../domain/customer/entity/customer";
+import CustomerRepositoryInterface from "../../../domain/customer/repository/customer-repository.interface";
 
 describe('Test find customer use case', () => {
   let sequelize: Sequelize;
-  let customerRepository: CustomerRepository;
+  let customerRepository: CustomerRepositoryInterface;
   let customer: Customer;
   let useCase: FindCustomerUseCase;
 
@@ -46,10 +47,10 @@ describe('Test find customer use case', () => {
       id: customer.id,
       name: customer.name,
       address: {
-        street: customer.Address.street,
-        city: customer.Address.city,
-        number: customer.Address.number,
-        zip: customer.Address.zip,
+        street: customer.address.street,
+        city: customer.address.city,
+        number: customer.address.number,
+        zip: customer.address.zip,
       },
     };
     const result = await useCase.execute(input);

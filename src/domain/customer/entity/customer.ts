@@ -39,7 +39,7 @@ export default class Customer {
     this.validate();
   }
 
-  get Address(): Address {
+  get address(): Address {
     return this._address;
   }
 
