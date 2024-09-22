@@ -43,7 +43,7 @@ describe('Test create product use case integration', () => {
   });
 
   it('should throw an error when product already exists', async () => {
-    const result = await useCase.execute(input);
+    const productCreated = await useCase.execute(input);
     await expect(useCase.execute(input)).rejects.toThrowError("Validation error");
   });
 })

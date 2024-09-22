@@ -1,4 +1,3 @@
-import Customer from "../../../domain/customer/entity/customer";
 import {InputCreateCustomerDto, OutputCreateCustomerDto} from "./create.customer.dto";
 import CustomerRepositoryInterface from "../../../domain/customer/repository/customer-repository.interface";
 import CustomerFactory from "../../../domain/customer/factory/customer.factory";

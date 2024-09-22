@@ -1,6 +1,5 @@
 import {InputCreateProductDto} from "./create.product.dto";
 import ProductRepositoryInterface from "../../../domain/product/repository/product-repository.interface";
-import FindProductUseCase from "../find/find.product.usecase";
 import CreateProductUseCase from "./create.product.usecase";
 
 const input: InputCreateProductDto = {
