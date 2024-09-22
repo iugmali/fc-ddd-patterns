@@ -15,7 +15,7 @@ const input: InputCreateCustomerDto = {
   }
 };
 
-describe('Test find customer use case', () => {
+describe('Test create customer use case integration', () => {
   let sequelize: Sequelize;
   let customerRepository: CustomerRepositoryInterface;
   let useCase: CreateCustomerUseCase;

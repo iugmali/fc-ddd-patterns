@@ -23,7 +23,7 @@ const MockRepository = () => {
 let customerRepository: CustomerRepositoryInterface;
 let usecase: CreateCustomerUseCase;
 
-describe('Test create customer use case', () => {
+describe('Test create customer use case unit', () => {
   beforeEach(() => {
     jest.clearAllMocks();
     customerRepository = MockRepository();
