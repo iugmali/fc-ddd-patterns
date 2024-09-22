@@ -12,22 +12,35 @@ export default class ProductRepository implements ProductRepositoryInterface {
   }
 
   async update(entity: Product): Promise<void> {
-    await ProductModel.update(
-      {
-        name: entity.name,
-        price: entity.price,
-      },
-      {
-        where: {
-          id: entity.id,
+    try {
+      await ProductModel.update(
+        {
+          name: entity.name,
+          price: entity.price,
         },
-      }
-    );
+        {
+          where: {
+            id: entity.id,
+          },
+        },
+      );
+    } catch (error) {
+      throw new Error("Error updating product");
+    }
   }
 
   async find(id: string): Promise<Product> {
-    const productModel = await ProductModel.findOne({ where: { id } });
-    return new Product(productModel.id, productModel.name, productModel.price);
+    try {
+      const productModel = await ProductModel.findOne({
+        where: {
+          id,
+        },
+        rejectOnEmpty: true,
+      });
+      return new Product(productModel.id, productModel.name, productModel.price);
+    } catch (error) {
+      throw new Error("Product not found");
+    }
   }
 
   async findAll(): Promise<Product[]> {
