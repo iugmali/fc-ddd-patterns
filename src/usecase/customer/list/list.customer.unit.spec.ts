@@ -22,7 +22,7 @@ const MockRepository = () => {
   }
 };
 
-describe('Test list customer use case', () => {
+describe('Test list customer use case unit', () => {
   let customerRepository: CustomerRepositoryInterface;
   let useCase: ListCustomerUseCase;
 

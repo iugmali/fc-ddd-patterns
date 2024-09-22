@@ -43,7 +43,7 @@ const output: OutputListCustomerDto = {
   ]
 };
 
-describe('Test list customer use case', () => {
+describe('Test list customer use case integration', () => {
   let sequelize: Sequelize;
   let customerRepository: CustomerRepositoryInterface;
   let useCase: ListCustomerUseCase;

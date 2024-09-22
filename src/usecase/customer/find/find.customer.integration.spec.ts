@@ -7,7 +7,7 @@ import FindCustomerUseCase from "./find.customer.usecase";
 import Customer from "../../../domain/customer/entity/customer";
 import CustomerRepositoryInterface from "../../../domain/customer/repository/customer-repository.interface";
 
-describe('Test find customer use case', () => {
+describe('Test find customer use case integration', () => {
   let sequelize: Sequelize;
   let customerRepository: CustomerRepositoryInterface;
   let customer: Customer;

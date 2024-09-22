@@ -1,10 +1,6 @@
-import {Sequelize} from "sequelize-typescript";
-import CustomerModel from "../../../infrastructure/customer/repository/sequelize/customer.model";
-import CustomerRepository from "../../../infrastructure/customer/repository/sequelize/customer.repository";
 import CustomerFactory from "../../../domain/customer/factory/customer.factory";
 import Address from "../../../domain/customer/value-object/address";
 import FindCustomerUseCase from "./find.customer.usecase";
-import Customer from "../../../domain/customer/entity/customer";
 
 const customer = CustomerFactory.createWithAddress(
   'John Doe',
@@ -25,7 +21,7 @@ const MockCustomerRepository = () => {
   }
 };
 
-describe('Test find customer use case', () => {
+describe('Test find customer use case unit', () => {
   beforeEach(async () => {
     jest.clearAllMocks();
   });
