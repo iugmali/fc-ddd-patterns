@@ -16,7 +16,7 @@ const customer2 = CustomerFactory.createWithAddress(
 const MockRepository = () => {
   return {
     create: jest.fn(),
-    find: jest.fn().mockReturnValue(Promise.resolve(customer1)),
+    find: jest.fn(),
     findAll: jest.fn().mockReturnValue(Promise.resolve([customer1, customer2])),
     update: jest.fn(),
   }
