@@ -1,6 +1,4 @@
-import ProductInterface from "./product.interface";
-
-export default class Product implements ProductInterface {
+export default class Product {
   private readonly _id: string;
   private _name: string;
   private _price: number;
@@ -41,8 +39,11 @@ export default class Product implements ProductInterface {
     if (this._name.length === 0) {
       throw new Error("Name is required");
     }
-    if (this._price < 0) {
+    if (this._price <= 0) {
       throw new Error("Price must be greater than zero");
+    }
+    if (isNaN(this._price)) {
+      throw new Error("Price must be a number");
     }
     return true;
   }
