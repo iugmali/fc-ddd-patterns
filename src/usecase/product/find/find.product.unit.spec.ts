@@ -1,5 +1,4 @@
 import ProductFactory from "../../../domain/product/factory/product.factory";
-import ProductRepositoryInterface from "../../../domain/product/repository/product-repository.interface";
 import FindProductUseCase from "./find.product.usecase";
 import {InputFindProductDto} from "./find.product.dto";
 
@@ -9,7 +8,7 @@ const product = ProductFactory.create(
 );
 
 const MockProductRepository = () => ({
-  find: jest.fn().mockResolvedValue(Promise.resolve(product)),
+  find: jest.fn().mockReturnValue(Promise.resolve(product)),
   findAll: jest.fn(),
   create: jest.fn(),
   update: jest.fn()
@@ -20,16 +19,13 @@ const input: InputFindProductDto = {
 };
 
 describe("test find Product use case unit", () => {
-  let productRepository: ProductRepositoryInterface;
-  let useCase: FindProductUseCase;
-
   beforeEach(() => {
     jest.clearAllMocks();
-    productRepository = MockProductRepository();
-    useCase = new FindProductUseCase(productRepository);
   });
 
   it("should find a product by id", async () => {
+    const productRepository = MockProductRepository();
+    const useCase = new FindProductUseCase(productRepository);
     const result = await useCase.execute(input);
     expect(result).toEqual({
       id: product.id,
@@ -39,9 +35,11 @@ describe("test find Product use case unit", () => {
   });
 
   it("should throw an error when product not found", async () => {
+    const productRepository = MockProductRepository();
     productRepository.find.mockImplementation(() => {
       throw new Error('Product not found');
     });
+    const useCase = new FindProductUseCase(productRepository);
     await expect(useCase.execute(input)).rejects.toThrowError("Product not found");
   });
 });
