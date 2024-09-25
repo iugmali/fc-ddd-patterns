@@ -1,6 +1,5 @@
 import {app} from "./express";
 import {config} from "dotenv";
-import {customerRouter} from "./routes/customer.route";
 
 config()
 
