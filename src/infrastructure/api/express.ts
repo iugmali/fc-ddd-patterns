@@ -20,9 +20,7 @@ async function setupDb() {
   await sequelize.sync();
 }
 
-setupDb().then(() => {
-  console.log("DB connected.");
-}).catch((_) => {
+setupDb().catch((_) => {
   process.exit(1);
 });
 
