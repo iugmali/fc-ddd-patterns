@@ -7,6 +7,13 @@ describe("Product unit tests", () => {
     }).toThrowError("Id is required");
   });
 
+  it("should throw error when id is a number", () => {
+    expect(() => {
+      // @ts-ignore
+      new Product(100, "Product 1", 100);
+    }).toThrowError("Id must be a string");
+  });
+
   it("should throw error when name is empty", () => {
     expect(() => {
       new Product("123", "", 100);
