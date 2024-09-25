@@ -8,6 +8,7 @@ import ListCustomerUseCase from "../../../usecase/customer/list/list.customer.us
 import {InputListCustomerDto} from "../../../usecase/customer/list/list.customer.dto";
 import UpdateCustomerUseCase from "../../../usecase/customer/update/update.customer.usecase";
 import {InputUpdateCustomerDto} from "../../../usecase/customer/update/update.customer.dto";
+import CustomerPresenter from "../presenters/customer.presenter";
 
 export const customerRouter = Router();
 
@@ -35,7 +36,10 @@ customerRouter.get('/', async (req, res) => {
   try {
     const input: InputListCustomerDto = {};
     const output = await useCase.execute(input);
-    res.status(200).json(output);
+    res.status(200).format({
+      json: () => res.json(output),
+      xml: () => res.send(CustomerPresenter.listXML(output))
+    });
   } catch (error) {
     res.status(500).json(error);
   }

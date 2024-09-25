@@ -5,6 +5,28 @@ import request from "supertest";
 describe('customer E2E tests', () => {
   beforeEach(async () => {
     await sequelize.sync({force: true});
+    await request(app)
+      .post('/customer')
+      .send({
+        name: 'John Doe',
+        address: {
+          street: '123 Main St',
+          city: 'Springfield',
+          number: 123,
+          zip: '62701'
+        }
+      });
+    await request(app)
+      .post('/customer')
+      .send({
+        name: 'Jane Doe',
+        address: {
+          street: '456 Main St',
+          city: 'Idaho',
+          number: 1,
+          zip: '63510'
+        }
+      });
   })
 
   afterAll(async () => {
@@ -56,28 +78,6 @@ describe('customer E2E tests', () => {
   });
 
   it('should list all customers', async () => {
-    await request(app)
-      .post('/customer')
-      .send({
-        name: 'John Doe',
-        address: {
-          street: '123 Main St',
-          city: 'Springfield',
-          number: 123,
-          zip: '62701'
-        }
-      });
-    await request(app)
-      .post('/customer')
-      .send({
-        name: 'Jane Doe',
-        address: {
-          street: '456 Main St',
-          city: 'Idaho',
-          number: 1,
-          zip: '63510'
-        }
-      });
     const response = await request(app).get('/customer').send();
     expect(response.status).toBe(200);
     expect(response.body).toEqual({
@@ -104,6 +104,23 @@ describe('customer E2E tests', () => {
         }
       ]
     });
+  });
+
+  it('should list all customers in xml', async () => {
+    const response = await request(app).get('/customer').set('Accept', 'application/xml').send();
+    expect(response.status).toBe(200);
+    expect(response.headers['content-type']).toBe('application/xml; charset=utf-8');
+    expect(response.text).toContain('<customers>');
+    expect(response.text).toContain('<customer>');
+    expect(response.text).toContain('<id>');
+    expect(response.text).toContain('<name>');
+    expect(response.text).toContain('<address>');
+    expect(response.text).toContain('<street>');
+    expect(response.text).toContain('<city>');
+    expect(response.text).toContain('<number>');
+    expect(response.text).toContain('<zip>');
+    expect(response.text).toContain('</customer>');
+    expect(response.text).toContain('</customers>');
   });
 
   it('should find a customer by id', async () => {
