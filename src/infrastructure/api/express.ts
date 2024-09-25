@@ -22,7 +22,7 @@ async function setupDb() {
 
 setupDb().then(() => {
   console.log("DB connected.");
-}).catch((error) => {
+}).catch((_) => {
   process.exit(1);
 });
 
